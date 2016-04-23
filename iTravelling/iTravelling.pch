@@ -1,0 +1,61 @@
+//
+//  iTravelling.pch
+//  iTravelling
+//
+//  Created by Mag1cPanda on 16/4/22.
+//  Copyright © 2016年 Mag1cPanda. All rights reserved.
+//
+
+#ifndef iTravelling_pch
+#define iTravelling_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* iTravelling_pch */
+
+#define HomePageUrl @"http://test.lvpeng.cc/index.php/Api/Index/a_first/page/1"
+
+#define IMGPrefix @"http://test.lvpeng.cc"
+
+#define FindUrl @"http://test.lvpeng.cc/index.php/Api/Travel/listCommunity"
+
+//旅途
+#define FootMarkUrl @"http://121.196.237.254/lkapp/app/footmark/footmark/listPageFootMark.do?deviceType=1"
+
+#define PhotoSetsUrl @"http://121.196.237.254/lkapp/app/article/article/listPageArticleInfo.do?deviceType=1"
+
+#define TravelNotesUrl @"http://121.196.237.254/lkapp/app/article/article/listPageArticleInfo.do?deviceType=1"
+
+#define JourneySearchUrl @"http://121.196.237.254/lkapp/app/article/article/listPageArticleInfo.do?deviceType=1"
+
+#define DetailUrl @"http://121.196.237.254/lkapp/app/article/article/getArticleDetail.do?deviceType=1"
+
+#import "SRDataSource.h"
+#import "SRDelegate.h"
+#import "AFNetworking.h"
+#import "PureLayout.h"
+#import "MJRefresh.h"
+#import "UIImageView+WebCache.h"
+#import "SREasyMacro.h"
+#import "UIScrollView+EmptyDataSet.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
