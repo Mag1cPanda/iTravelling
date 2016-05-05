@@ -17,7 +17,7 @@
 -(void)setDic:(NSDictionary *)dic{
     _dic = dic;
     NSString *imgUrl = [NSString stringWithFormat:@"%@%@",IMGPrefix,dic[@"picpath"]];
-    [self.imageV sd_setImageWithURL:[NSURL URLWithString:imgUrl]];
+    [self.imageV sd_setImageWithURL:[NSURL URLWithString:imgUrl] placeholderImage:[UIImage imageNamed:@"noteBg_305x137_"]];
     self.titleLab.text = dic[@"title"];
     self.subTitleLab.text = dic[@"bewrite"];
 }

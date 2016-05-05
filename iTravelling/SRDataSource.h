@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "UIScrollView+EmptyDataSet.h"
 //model有可能为空  所以使用id
-typedef void (^SRCellConfigureBlock)(id cell, id model);
-@interface SRDataSource : NSObject<UITableViewDataSource>
+typedef void (^SRCellConfigureBlock)(id cell, id model , NSIndexPath *indexPath);
+@interface SRDataSource : NSObject<UITableViewDataSource,DZNEmptyDataSetSource>
 
 @property (nonatomic, assign) NSInteger sectionCount;
 @property (nonatomic, strong) NSArray *dataArray;//数据源

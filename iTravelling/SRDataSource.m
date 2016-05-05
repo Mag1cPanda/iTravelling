@@ -16,7 +16,7 @@
         self.dataArray = dataArray;
         self.sectionCount = sectionCount;
         self.cellIdentifier = cellIdentifier;
-        self.configureBlock = [configureBlock copy];
+        self.configureBlock = configureBlock;
     }
     return self;
 }
@@ -41,10 +41,27 @@
         id model = _dataArray[indexPath.row];
         //调用配置cell的代码块
         if (_configureBlock) {
-            _configureBlock(cell, model);
+            _configureBlock(cell, model, indexPath);
         }
     }
     return cell;
+}
+
+//数组为空时table展示的页面
+//- (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView{
+//    NSString *text = @"正在加载...";
+//    UIFont *font = [UIFont systemFontOfSize:14.0];
+//    UIColor *textColor = [Util colorWithHexString:@"333333"];
+//    NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
+//    [attributes setObject:font forKey:NSFontAttributeName];
+//    [attributes setObject:textColor forKey:NSForegroundColorAttributeName];
+//    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:text attributes:attributes];
+//    return attributedString;
+//}
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView{
+    
+    return [UIImage imageNamed: @"noproduct"];
 }
 
 @end

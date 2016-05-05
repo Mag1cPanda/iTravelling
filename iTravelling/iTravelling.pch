@@ -16,20 +16,35 @@
 
 #define HomePageUrl @"http://test.lvpeng.cc/index.php/Api/Index/a_first/page/1"
 
+//首页详情中LocalTour的请求网址
+#define LocalTourUrl @"http://test.lvpeng.cc/index.php/Api/ShowProduct/show_search_tour"
+
 #define IMGPrefix @"http://test.lvpeng.cc"
 
 #define FindUrl @"http://test.lvpeng.cc/index.php/Api/Travel/listCommunity"
 
 //旅途
-#define FootMarkUrl @"http://121.196.237.254/lkapp/app/footmark/footmark/listPageFootMark.do?deviceType=1"
+#define LTIMgPrefix @"http://120.27.149.104:8899"
+//足迹
+#define FootMarkUrl @"http://www.qingnianlvxing.com/lkapp/app/footmark/footmark/listPageFootMark.do?deviceType=1"
+#define ZJDetail @"http://www.qingnianlvxing.com/lkapp/app/footmark/footmark/getFootmarkDetail.do?deviceType=1"
 
-#define PhotoSetsUrl @"http://121.196.237.254/lkapp/app/article/article/listPageArticleInfo.do?deviceType=1"
+//图集
+#define PhotoSetsUrl @"http://www.qingnianlvxing.com/lkapp/app/article/article/listPageArticleInfoForGood.do?deviceType=1"
 
-#define TravelNotesUrl @"http://121.196.237.254/lkapp/app/article/article/listPageArticleInfo.do?deviceType=1"
+#define PSBannerUrl @"http://www.qingnianlvxing.com/lkapp/app/system/system/getBannerList.do?deviceType=1"
 
-#define JourneySearchUrl @"http://121.196.237.254/lkapp/app/article/article/listPageArticleInfo.do?deviceType=1"
+#define TJDetail @"http://www.qingnianlvxing.com/lkapp/app/article/article/getArticleDetail.do?deviceType=1"
 
-#define DetailUrl @"http://121.196.237.254/lkapp/app/article/article/getArticleDetail.do?deviceType=1"
+//IP http://121.196.237.254
+//游记
+#define TravelNotesUrl @"http://www.qingnianlvxing.com/lkapp/app/article/article/listPageArticleInfoForGood.do?deviceType=1"
+#define TNBannerUrl @"http://www.qingnianlvxing.com/lkapp/app/system/system/getBannerList.do?deviceType=1"
+
+
+#define LTSearchUrl @"http://www.qingnianlvxing.com/lkapp/app/article/article/listPageArticleInfo.do?deviceType=1"
+
+#define DetailUrl @"http://www.qingnianlvxing.com/lkapp/app/article/article/getArticleDetail.do?deviceType=1"
 
 #import "SRDataSource.h"
 #import "SRDelegate.h"
@@ -39,8 +54,10 @@
 #import "UIImageView+WebCache.h"
 #import "SREasyMacro.h"
 #import "UIScrollView+EmptyDataSet.h"
-
-
+#import "BaseViewController.h"
+#import "Util.h"
+#import "SVProgressHUD.h"
+#import "UIView+Frame.h"
 
 
 

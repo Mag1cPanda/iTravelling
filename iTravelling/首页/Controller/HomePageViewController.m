@@ -9,14 +9,9 @@
 #import "HomePageViewController.h"
 #import "HPTableViewCell.h"
 #import "HPModel.h"
-
+#import "HPDetailViewController.h"
 @interface HomePageViewController ()
-{
-    SRDataSource *dataSource;
-    SRDelegate *delegate;
-    UITableView *table;
-    NSMutableArray *dataArray;
-}
+
 @end
 
 @implementation HomePageViewController
@@ -24,16 +19,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    dataArray = [NSMutableArray array];
-    self.tabBarController.tabBar.barTintColor = [UIColor whiteColor];
-    self.tabBarController.tabBar.backgroundColor = [UIColor whiteColor];
-    
-    //隐藏tabBar上面的横线
-    for (UIView *view in self.tabBarController.tabBar.subviews) {
-        if ([view isKindOfClass:[UIImageView class]] && view.bounds.size.height <= 1) {
-            view.hidden = YES;
-        }
-    }
     
     [self initTableView];
     
@@ -45,32 +30,22 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:YES];
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
-}
-
--(void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:YES];
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
-}
-
--(BOOL)prefersStatusBarHidden {
-    return YES;
-}
+//-(BOOL)prefersStatusBarHidden {
+//    return YES;
+//}
 
 #pragma mark - 初始化table
 -(void)initTableView {
     
-    table = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
-//    table.backgroundColor = [UIColor redColor];
-    table.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [dataArray removeAllObjects];
+    self.table = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, SCREEN_H) style:UITableViewStylePlain];
+    self.table.hidden = YES;
+    self.table.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self.dataArray removeAllObjects];
         [self loadHomePageData];
     }];
-    [self.view addSubview:table];
+    [self.view addSubview:self.table];
     
-    [table registerNib:[UINib nibWithNibName:@"HPTableViewCell" bundle:nil] forCellReuseIdentifier:@"HPTableViewCell"];
+    [self.table registerNib:[UINib nibWithNibName:@"HPTableViewCell" bundle:nil] forCellReuseIdentifier:@"HPTableViewCell"];
 }
 
 
@@ -81,13 +56,17 @@
     
      manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
+    [SVProgressHUD showWithStatus:@"Loading"];
+    
     [manager GET:HomePageUrl parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         
-        [table.mj_header endRefreshing];
+        [SVProgressHUD dismiss];
         
-        NSLog(@"%@",operation.responseString);
+        [self.table.mj_header endRefreshing];
         
-        NSDictionary *bigDic = [self dictionaryWithJsonString:operation.responseString];
+//        NSLog(@"%@",operation.responseString);
+        
+        NSDictionary *bigDic = [Util dictionaryWithJsonString:operation.responseString];
         NSArray *infoArr = bigDic[@"info"];
         
         for (NSDictionary *dic in infoArr) {
@@ -95,18 +74,26 @@
             if (!extension) {
                 extension = dic[@"localTour"];
             }
-            [dataArray addObject:extension];
+            [self.dataArray addObject:extension];
         }
         
-        delegate = [[SRDelegate alloc] initWithCellHeight:300];
-        dataSource = [[SRDataSource alloc] initWithDataArray:dataArray sectionCount:1 cellIdentifier:@"HPTableViewCell" configureBlock:^(HPTableViewCell *cell, NSDictionary *dic) {
+        self.delegate  = [[SRDelegate alloc] initWithCellHeight:300 HandleBlock:^(NSIndexPath *indexPath) {
+            NSLog(@"%zi %zi",indexPath.section, indexPath.row);
+            NSDictionary *dic = self.dataArray[indexPath.row];
+            HPDetailViewController *vc = [HPDetailViewController new];
+            vc.hidesBottomBarWhenPushed = YES;
+            vc.dic = dic;
+            [self.navigationController pushViewController:vc animated:YES];
+        }];
+        self.dataSource = [[SRDataSource alloc] initWithDataArray:self.dataArray sectionCount:1 cellIdentifier:@"HPTableViewCell" configureBlock:^(HPTableViewCell *cell, NSDictionary *dic, NSIndexPath *indexPath) {
             cell.dic = dic;
         }];
         
-        table.delegate = delegate;
-        table.dataSource = dataSource;
+        self.table.delegate = self.delegate;
+        self.table.dataSource = self.dataSource;
+        self.table.hidden = NO;
         
-        [table  reloadData];
+        [self.table  reloadData];
         
     } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
         
@@ -115,28 +102,7 @@
     }];
 }
 
--(NSString*)objectToJson:(NSObject *)object {
-    NSError *parseError = nil;
-    NSData  *jsonData = [NSJSONSerialization dataWithJSONObject:object options:NSJSONWritingPrettyPrinted error:&parseError];
-    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-}
 
-- (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString {
-    if (jsonString == nil) {
-        return nil;
-    }
-    
-    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
-    NSError *err;
-    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
-                                                        options:NSJSONReadingMutableContainers
-                                                          error:&err];
-    if(err) {
-        NSLog(@"json解析失败：%@",err);
-        return nil;
-    }
-    return dic;
-}
 
 
 /*

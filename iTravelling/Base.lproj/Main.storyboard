@@ -27,7 +27,7 @@
         <!--发现-->
         <scene sceneID="Bqt-fi-Tif">
             <objects>
-                <viewController id="IAY-xE-qZL" sceneMemberID="viewController">
+                <viewController id="IAY-xE-qZL" customClass="FindViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KEk-Ak-pIc"/>
                         <viewControllerLayoutGuide type="bottom" id="xze-Gb-5VU"/>
@@ -46,7 +46,7 @@
         <!--旅途-->
         <scene sceneID="M8d-0b-weo">
             <objects>
-                <viewController id="rqS-hU-bDJ" sceneMemberID="viewController">
+                <viewController id="rqS-hU-bDJ" customClass="JourneyViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="skC-95-yqZ"/>
                         <viewControllerLayoutGuide type="bottom" id="bEJ-Vy-48l"/>
@@ -65,17 +65,18 @@
         <!--搜索-->
         <scene sceneID="hxM-7E-WYe">
             <objects>
-                <viewController id="do9-QY-rvh" sceneMemberID="viewController">
+                <viewController id="do9-QY-rvh" customClass="SearchViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Y5L-kc-ULI"/>
                         <viewControllerLayoutGuide type="bottom" id="yoF-uM-iTX"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="xbI-sK-xjU">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="搜索" id="NTJ-g2-8d6"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I2v-Xy-Bl6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -84,7 +85,7 @@
         <!--设置-->
         <scene sceneID="ehF-to-NcN">
             <objects>
-                <viewController id="OBH-Xr-gJN" sceneMemberID="viewController">
+                <viewController id="OBH-Xr-gJN" customClass="SettingViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ucc-BU-hKE"/>
                         <viewControllerLayoutGuide type="bottom" id="Xgk-fM-lT1"/>
@@ -104,11 +105,7 @@
         <scene sceneID="Ja8-du-z2a">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vmX-zV-YHT" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="首页" image="icon_pin" id="d7h-O3-KJZ" customClass="RAMAnimatedTabBarItem" customModule="iTravelling" customModuleProvider="target">
-                        <connections>
-                            <outlet property="animation" destination="iev-bv-0yD" id="m2a-rV-Z71"/>
-                        </connections>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="首页" image="icon_pin" id="d7h-O3-KJZ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="lN5-FT-MZd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -120,14 +117,13 @@
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3fF-SB-npA" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="iev-bv-0yD" customClass="RAMFlipLeftTransitionItemAnimations" customModule="iTravelling" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="953" y="-173"/>
         </scene>
-        <!--Animated Tab Bar Controller-->
+        <!--Tab Bar Controller-->
         <scene sceneID="UZk-9N-88Y">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="z82-Aa-Ijp" customClass="RAMAnimatedTabBarController" customModule="iTravelling" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="z82-Aa-Ijp" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="a8Y-LI-IBZ">
                         <autoresizingMask key="autoresizingMask"/>
@@ -149,11 +145,7 @@
         <scene sceneID="obc-o6-fYI">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mzn-aE-vYw" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="发现" image="icon_pin" id="oeQ-OQ-DZ9" customClass="RAMAnimatedTabBarItem" customModule="iTravelling" customModuleProvider="target">
-                        <connections>
-                            <outlet property="animation" destination="6AI-0r-xvt" id="bgJ-5G-Ui8"/>
-                        </connections>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="发现" image="icon_pin" id="oeQ-OQ-DZ9"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LaV-z8-dwS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -165,7 +157,6 @@
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eUP-vk-zMT" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="6AI-0r-xvt" customClass="RAMFlipLeftTransitionItemAnimations" customModule="iTravelling" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="953" y="525"/>
         </scene>
@@ -173,11 +164,7 @@
         <scene sceneID="BN7-CH-cwl">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0G3-dg-fjh" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="旅途" image="icon_pin" id="yD2-RN-wn3" customClass="RAMAnimatedTabBarItem" customModule="iTravelling" customModuleProvider="target">
-                        <connections>
-                            <outlet property="animation" destination="ob9-0B-hhi" id="Ttc-E7-iZN"/>
-                        </connections>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="旅途" image="icon_pin" id="yD2-RN-wn3"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="v18-rT-WK4">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -189,7 +176,6 @@
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3CR-1b-1vO" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="ob9-0B-hhi" customClass="RAMFlipRightTransitionItemAnimations" customModule="iTravelling" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="953" y="1187"/>
         </scene>
@@ -197,11 +183,7 @@
         <scene sceneID="iyi-Pz-fHq">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2Al-Q0-BpN" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="搜索" image="icon_pin" id="aEo-Vx-odI" customClass="RAMAnimatedTabBarItem" customModule="iTravelling" customModuleProvider="target">
-                        <connections>
-                            <outlet property="animation" destination="3XJ-qi-seT" id="6pP-Ho-7ui"/>
-                        </connections>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="搜索" image="icon_pin" id="aEo-Vx-odI"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="lhK-cA-nse">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -213,7 +195,6 @@
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NLG-I9-06j" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="3XJ-qi-seT" customClass="RAMFlipRightTransitionItemAnimations" customModule="iTravelling" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="953" y="1875"/>
         </scene>
@@ -221,11 +202,7 @@
         <scene sceneID="eZN-Mc-uOS">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="v7K-3x-Ad5" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="设置" image="icon_pin" id="EqU-bI-Ni3" customClass="RAMAnimatedTabBarItem" customModule="iTravelling" customModuleProvider="target">
-                        <connections>
-                            <outlet property="animation" destination="vSE-hR-KQh" id="i7f-Y9-8LD"/>
-                        </connections>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="设置" image="icon_pin" id="EqU-bI-Ni3"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="76i-ou-0Yn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -237,7 +214,6 @@
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ldh-A4-7d7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="vSE-hR-KQh" customClass="RAMFlipRightTransitionItemAnimations" customModule="iTravelling" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="953" y="2587"/>
         </scene>

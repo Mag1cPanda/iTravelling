@@ -10,10 +10,21 @@
 
 @implementation SRDelegate
 
--(instancetype)initWithCellHeight:(CGFloat)cellHeight {
+-(instancetype)initWithCellHeight:(CGFloat)cellHeight HandleBlock:(CellHandleBlock)block{
     self = [super init];
     if (self) {
         self.cellHeight = cellHeight;
+        self.handleBlock = block;
+    }
+    return self;
+}
+
+-(instancetype)initWithCellHeight:(CGFloat)cellHeight didSelectRow:(CellHandleBlock)selectBlock didDeSelectRow:(CellHandleBlock)deSelectBlock{
+    self = [super init];
+    if (self) {
+        self.cellHeight = cellHeight;
+        self.selectBlock = selectBlock;
+        self.deSelectBlock = deSelectBlock;
     }
     return self;
 }
@@ -65,10 +76,23 @@
     if (_handleBlock) {
         _handleBlock(indexPath);
     }
+    
+    if (_selectBlock) {
+        _selectBlock(indexPath);
+    }
 }
 
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    if (_deSelectBlock) {
+        _deSelectBlock(indexPath);
+    }
+}
+
+#pragma mark - DZNEmptyDataSetDelegate Methods
+
+- (BOOL)emptyDataSetShouldDisplay:(UIScrollView *)scrollView
+{
+    return YES;
 }
 
 @end
